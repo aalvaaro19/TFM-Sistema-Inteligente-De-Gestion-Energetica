@@ -257,7 +257,7 @@ Las lecturas de los sensores proceden de un modelo de simulación calibrado con 
 **Álvaro Bermejo Urgel**
 
 Trabajo Fin de Máster — Máster en Inteligencia Artificial
-Tutor: Daniel Rubia Yagüe
+Tutor: Juan Manuel Moreno Lamparero
 
 ---
 
