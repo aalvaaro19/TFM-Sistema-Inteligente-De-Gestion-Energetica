@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tfm-energia"
+version = "0.1.0"
+description = "Sistema Inteligente de Gestión Energética - TFM Máster IA"
+readme = "README.md"
+authors = [{ name = "Álvaro Bermejo Urgel" }]
+requires-python = ">=3.10,<3.12"
+license = { text = "Proprietary - Academic use only" }
+
+dependencies = [
+    # Data manipulation
+    "numpy>=1.26,<2.0",
+    "pandas>=2.1",
+    "scipy>=1.11",
+    "pyarrow>=14.0",
+
+    # Configuration & environment
+    "pydantic>=2.5",
+    "pydantic-settings>=2.1",
+    "python-dotenv>=1.0",
+
+    # Logging
+    "loguru>=0.7",
+
+    # HTTP clients (APIs)
+    "httpx>=0.26",
+    "requests>=2.31",
+    "tenacity>=8.2",
+
+    # Calendar / holidays
+    "holidays>=0.42",
+
+    # MongoDB
+    "pymongo>=4.6",
+    "motor>=3.3",
+
+    # Machine learning
+    "scikit-learn>=1.4",
+    "statsmodels>=0.14",
+    "prophet>=1.1.5",
+
+    # Deep learning
+    "tensorflow>=2.15,<2.17",
+
+    # Optimization
+    # Acotado a la serie 3: PuLP 4.0 elimina `PULP_CBC_CMD` y cambia la forma de
+    # declarar variables, así que abrirlo rompería el optimizador sin aviso.
+    "pulp>=3.0,<4.0",
+
+    # API
+    "fastapi>=0.109",
+    "uvicorn[standard]>=0.27",
+
+    # Dashboard
+    "streamlit>=1.30",
+    "plotly>=5.18",
+
+    # Visualization (notebooks)
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+
+    # Notebooks
+    "jupyterlab>=4.0",
+    "ipykernel>=6.28",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=23.12",
+    "ruff>=0.1.14",
+    "mypy>=1.8",
+    "pre-commit>=3.6",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=src/tfm_energia --cov-report=term-missing"
