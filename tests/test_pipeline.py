@@ -1,11 +1,3 @@
-"""Tests de la orquestación del proyecto.
-
-Lo que se verifica es el **grafo de dependencias**: que el orden respete las
-precedencias declaradas, que los filtros no rompan ese orden y que un ciclo se
-detecte en lugar de producir una secuencia silenciosamente incorrecta. Ejecutar
-una etapa antes de aquella de la que depende no suele fallar; produce resultados
-calculados sobre datos obsoletos, que es peor porque no avisa.
-"""
 from __future__ import annotations
 
 from pathlib import Path

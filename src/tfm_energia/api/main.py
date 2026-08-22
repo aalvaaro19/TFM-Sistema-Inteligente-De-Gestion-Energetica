@@ -1,18 +1,3 @@
-"""API REST del sistema de gestión energética.
-
-Expone los resultados de las fases previas —previsión de demanda, anomalías
-detectadas y plan de climatización optimizado— para que los consuma el cuadro de
-mando o cualquier otro cliente.
-
-La API **no recalcula**: sirve lo que dejaron los scripts de cada fase. Así
-responde rápido, no arrastra el coste de entrenar modelos en cada petición y
-sigue funcionando aunque MongoDB no esté disponible.
-
-Arranque en desarrollo:
-    uvicorn tfm_energia.api.main:app --reload
-
-Documentación interactiva en http://localhost:8000/docs
-"""
 from __future__ import annotations
 
 from datetime import datetime, timezone

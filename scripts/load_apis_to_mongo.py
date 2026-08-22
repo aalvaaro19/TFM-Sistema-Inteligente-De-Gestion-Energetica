@@ -1,16 +1,3 @@
-"""Carga en MongoDB los datos de las APIs externas (AEMET y e·sios).
-
-Completa el objetivo de integrar la información de sensores con datos externos:
-hasta ahora AEMET y e·sios solo vivían en CSV, y las colecciones `meteo_aemet`
-y `precios_pvpc` estaban vacías.
-
-La carga es *upsert*, así que reejecutarla actualiza en lugar de duplicar.
-
-Uso:
-    python scripts/load_apis_to_mongo.py
-    python scripts/load_apis_to_mongo.py --solo meteo
-    python scripts/load_apis_to_mongo.py --solo precios
-"""
 from __future__ import annotations
 
 import argparse

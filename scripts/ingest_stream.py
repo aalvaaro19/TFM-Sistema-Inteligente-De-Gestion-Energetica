@@ -1,22 +1,3 @@
-"""Ingesta los eventos IoT del flujo hacia MongoDB.
-
-Equivalente en Python del pipeline de StreamSets: lee los JSON Lines que dejan
-los gateways en `data/stream/`, valida cada evento, tipa las fechas, carga los
-correctos en MongoDB y aparta los defectuosos con su motivo.
-
-Uso:
-    # Ingesta completa (idempotente: reejecutar no duplica)
-    python scripts/ingest_stream.py
-
-    # Prueba en seco, sin escribir en MongoDB
-    python scripts/ingest_stream.py --sin-mongo
-
-    # Solo una sede
-    python scripts/ingest_stream.py --sede madrid
-
-    # Reprocesar todo desde cero
-    python scripts/ingest_stream.py --reiniciar-offsets --vaciar-coleccion
-"""
 from __future__ import annotations
 
 import argparse

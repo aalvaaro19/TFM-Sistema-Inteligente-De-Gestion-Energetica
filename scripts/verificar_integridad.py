@@ -1,34 +1,3 @@
-"""Comprueba la coherencia de los datos y los resultados del proyecto.
-
-Cada comprobación de este fichero existe porque **un fallo real se coló sin
-avisar**. Ninguno lanzaba excepción: producían resultados plausibles calculados
-sobre datos incoherentes, que es la clase de error más difícil de detectar y la
-que más daño hace en un trabajo académico.
-
-El catálogo, y el fallo que cada una vigila:
-
-1. **Reproducibilidad de la semilla** — `hash()` sobre texto está aleatorizado
-   por proceso, así que el mismo `seed` daba datos distintos en cada ejecución.
-2. **Coherencia meteorológica** — la temperatura exterior se sustituía después de
-   simular la física, y cada fila declaraba una temperatura que no era la que
-   había generado su propio consumo (desviación media de 3,8 °C).
-3. **Sesgo de la interpolación horaria** — la curva diaria no tenía media nula y
-   elevaba la temperatura reconstruida unos 2 °C sobre la que publica AEMET.
-4. **Tipado de fechas en MongoDB** — guardadas como texto, las consultas por
-   rango fallaban en los cambios de hora sin dar error.
-5. **Horas de los cambios horarios** — un `pandas.Timestamp` mal codificado hacía
-   desaparecer un precio en cada cambio de hora.
-6. **Consistencia entre capas** — los parquet, el flujo de eventos y MongoDB se
-   desincronizaban al regenerar solo una parte.
-7. **Fidelidad del modelo térmico** — si el modelo del optimizador no reproduce
-   el edificio, el ahorro que calcule es ficción.
-8. **Anomalías visibles** — una avería etiquetada que no deja rastro en los datos
-   es imposible de detectar, y hunde las métricas sin motivo real.
-
-Uso:
-    python scripts/verificar_integridad.py
-    python scripts/verificar_integridad.py --sin-mongo
-"""
 from __future__ import annotations
 
 import argparse

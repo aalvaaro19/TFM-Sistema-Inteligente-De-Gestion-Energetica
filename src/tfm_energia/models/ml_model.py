@@ -1,22 +1,3 @@
-"""Modelo de machine learning (gradient boosting) para predicción a 48 h.
-
-Enfoque **directo multi-paso**: en vez de predecir hora a hora y realimentar la
-propia predicción (recursivo, que acumula error), se entrena un único regresor
-que solo utiliza variables **conocidas en el instante de la predicción**:
-
-  * Calendario: hora, día de la semana, mes, festivo, codificación cíclica.
-  * Exógenas previstas: temperatura y ocupación (en producción vendrían de la
-    previsión AEMET y del calendario de la oficina, ambas disponibles a 48 h).
-  * Lags del target de **al menos** `horizonte` horas (48, 72, 168…): en el
-    origen de predicción el último dato real disponible es el de hace 1 h, así
-    que un lag de 48 h sigue siendo observable para todo el horizonte.
-
-Así el mismo modelo sirve para h=1 y para h=48 sin fuga de información, y se
-evalúa con el mismo backtesting de origen móvil que baselines y SARIMAX.
-
-Se usa ``HistGradientBoostingRegressor`` de scikit-learn: rendimiento
-equiparable a LightGBM sin añadir dependencias al proyecto.
-"""
 from __future__ import annotations
 
 import numpy as np

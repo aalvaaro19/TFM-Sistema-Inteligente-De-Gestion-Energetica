@@ -1,11 +1,3 @@
-"""Descarga histórico AEMET para las cuatro sedes.
-
-Si una sede falla, continúa con las demás (resiliente).
-
-Uso:
-    python scripts/download_aemet.py
-    python scripts/download_aemet.py --sede madrid
-"""
 from __future__ import annotations
 
 import argparse

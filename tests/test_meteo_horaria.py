@@ -1,15 +1,3 @@
-"""Tests de la reconstrucción horaria de la observación diaria de AEMET.
-
-Este módulo gobierna la física del edificio: la temperatura que reconstruye es la
-que produce la temperatura interior y el consumo de climatización. Un sesgo aquí
-se propaga a todo el proyecto sin dar ningún error.
-
-El test central es el de media nula. La versión anterior de la curva combinaba un
-seno diurno con un valor fijo nocturno cuya media era +0,43, de modo que la
-temperatura reconstruida quedaba unos 2 °C por encima de la que publica AEMET.
-Madrid salía a 18,8 °C de media anual cuando la real es 16,7, y el edificio
-necesitaba mucha menos calefacción de la que le corresponde.
-"""
 from __future__ import annotations
 
 import numpy as np

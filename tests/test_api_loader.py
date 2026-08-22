@@ -1,9 +1,3 @@
-"""Tests de la preparación de datos de las APIs externas (AEMET y e·sios).
-
-El riesgo aquí está en la conversión numérica y en las fechas: AEMET mezcla
-decimales con coma y con punto en el mismo fichero, y la serie de precios
-contiene las horas ambiguas de los cambios horarios.
-"""
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone

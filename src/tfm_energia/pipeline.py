@@ -1,19 +1,3 @@
-"""Orquestación del proyecto de punta a punta.
-
-El sistema se compone de nueve etapas con dependencias entre ellas: los modelos
-necesitan el dataset enriquecido, que necesita la meteorología descargada, y la
-ingesta necesita el flujo de eventos simulado. Ejecutarlas en el orden incorrecto
-no siempre falla: a veces produce resultados calculados sobre datos obsoletos,
-que es bastante peor porque no avisa.
-
-Este módulo declara esas dependencias de forma explícita, comprueba qué
-artefactos existen y permite reejecutar solo lo que hace falta. Es lo que hace
-que el proyecto sea **reproducible desde cero** por alguien que no lo conozca.
-
-Las etapas se lanzan como procesos independientes, igual que se ejecutarían a
-mano, para que el orquestador no introduzca un camino de ejecución distinto del
-documentado.
-"""
 from __future__ import annotations
 
 import subprocess

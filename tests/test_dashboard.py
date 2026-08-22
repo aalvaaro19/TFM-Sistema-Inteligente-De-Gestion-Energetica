@@ -1,15 +1,3 @@
-"""Tests del cuadro de mando.
-
-Se prueban el tema y los gráficos, que son módulos puros y no requieren levantar
-Streamlit. Lo que se verifica no es la estética sino las reglas que hacen la
-figura legible y honesta: **ningún gráfico con doble eje vertical**, leyenda
-cuando hay varias series, colores de estado nunca usados como serie, y rótulos
-que no se recortan contra el borde.
-
-La paleta está verificada aparte con el validador de accesibilidad del sistema de
-diseño; aquí se comprueba que el código respeta el orden de asignación y no
-inventa tonos cuando se agotan las ranuras.
-"""
 from __future__ import annotations
 
 from datetime import date

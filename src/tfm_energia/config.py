@@ -1,7 +1,3 @@
-"""Configuración centralizada del proyecto.
-
-Carga variables de entorno desde `.env` y expone un objeto `settings` tipado.
-"""
 from datetime import date
 from pathlib import Path
 

@@ -1,8 +1,3 @@
-"""Repositorio MongoDB para persistencia de datos del proyecto.
-
-Abstrae operaciones CRUD sobre las colecciones del proyecto, tanto contra
-MongoDB local (Docker) como contra MongoDB Atlas.
-"""
 from __future__ import annotations
 
 from collections.abc import Iterable

@@ -1,10 +1,3 @@
-"""Cliente para la API e·sios de Red Eléctrica de España.
-
-Documentación: https://api.esios.ree.es/
-
-Para precios PVPC horarios y otros indicadores del sistema eléctrico.
-Requiere `ESIOS_API_TOKEN` (solicitar por mail a consultasios@ree.es).
-"""
 from __future__ import annotations
 
 from datetime import date, datetime, timedelta

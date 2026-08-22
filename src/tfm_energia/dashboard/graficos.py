@@ -1,17 +1,3 @@
-"""Gráficos del cuadro de mando.
-
-Cada función devuelve una figura de Plotly ya compuesta con el tema. Reglas que
-se respetan en todas ellas:
-
-* **Un solo eje vertical.** Nunca dos escalas en el mismo gráfico: dos magnitudes
-  distintas van en dos gráficos o normalizadas a una base común. Superponer dos
-  ejes permite sugerir cualquier correlación con solo reescalar uno de ellos.
-* **El color sigue a la entidad, no a su posición.** Filtrar series no repinta a
-  las que quedan.
-* **Leyenda siempre con dos o más series**, y ninguna con una sola: el título ya
-  la nombra.
-* **Marcas finas y rejilla discreta**: el dato manda sobre el andamiaje.
-"""
 from __future__ import annotations
 
 import numpy as np

@@ -1,11 +1,3 @@
-"""Tests de la capa de acceso a MongoDB.
-
-Se centran en el tipado de fechas, que es donde está el riesgo real: un
-`timestamp` guardado como texto rompe las consultas por rango y las
-agregaciones temporales sin dar ningún error visible.
-
-No requieren una base de datos: prueban las funciones puras de normalización.
-"""
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone

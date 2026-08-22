@@ -1,9 +1,3 @@
-"""Genera los datasets sintéticos de las cuatro sedes y los guarda en data/synthetic/.
-
-Uso:
-    python scripts/generate_synthetic.py
-    python scripts/generate_synthetic.py --start 2024-01-01 --end 2025-12-31 --seed 42
-"""
 from __future__ import annotations
 
 import argparse

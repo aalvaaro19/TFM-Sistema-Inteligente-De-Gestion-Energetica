@@ -1,21 +1,3 @@
-"""Modelo SARIMAX para la predicción horaria de consumo eléctrico.
-
-El consumo de una oficina tiene **doble estacionalidad**: diaria (24 h) y
-semanal (168 h). Un SARIMAX clásico solo admite un periodo estacional, así que
-se ofrecen dos estrategias, ambas evaluables con el mismo backtesting:
-
-1. **SARIMAX estacional puro** – ``seasonal_order=(P,D,Q,24)``. Captura bien el
-   ciclo diario pero es costoso: el coste crece con el periodo estacional, por
-   lo que se entrena sobre una ventana móvil (`max_train_horas`).
-2. **SARIMAX + términos de Fourier** (`usar_fourier=True`) – la estacionalidad
-   se modela como regresores armónicos exógenos (24 h y 168 h) y el componente
-   ARIMA queda no estacional. Es el enfoque recomendado por Hyndman para series
-   con estacionalidad múltiple y de periodo largo, y aquí es un orden de
-   magnitud más rápido.
-
-Además admite exógenas reales del dataset (temperatura AEMET, ocupación,
-precio PVPC…), que es lo que diferencia un SARIMAX de un ARIMA univariante.
-"""
 from __future__ import annotations
 
 import warnings

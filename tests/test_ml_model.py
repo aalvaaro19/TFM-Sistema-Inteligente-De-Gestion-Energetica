@@ -1,4 +1,3 @@
-"""Tests del modelo de gradient boosting."""
 from __future__ import annotations
 
 import numpy as np

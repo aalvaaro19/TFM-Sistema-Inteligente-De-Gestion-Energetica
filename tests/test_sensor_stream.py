@@ -1,9 +1,3 @@
-"""Tests del simulador de gateways IoT.
-
-Cubren tres cosas: que el formato JSON Lines sea válido y legible, que el
-particionado sea el esperado, y que la corrupción controlada produzca
-exactamente los defectos que la validación debe detectar.
-"""
 from __future__ import annotations
 
 import json

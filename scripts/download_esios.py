@@ -1,8 +1,3 @@
-"""Descarga histórico de precios PVPC desde e·sios (REE).
-
-Uso:
-    python scripts/download_esios.py
-"""
 from __future__ import annotations
 
 from datetime import date

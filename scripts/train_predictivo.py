@@ -1,20 +1,3 @@
-"""Comparativa baseline vs SARIMAX sobre el dataset enriquecido.
-
-Evalúa todos los modelos con el **mismo** protocolo de backtesting de origen
-móvil (horizonte 48 h, un origen cada 24 h), que es el que replica la operación
-real del sistema: cada día se reentrena y se predicen las siguientes 48 horas.
-
-Salidas en `data/processed/`:
-    * ``metricas_modelos_{sede}.csv``      – tabla comparativa global
-    * ``metricas_horizonte_{sede}.csv``    – degradación del error por hora h
-    * ``backtest_{sede}.parquet``          – predicciones crudas (para gráficas)
-
-Uso:
-    python scripts/train_predictivo.py                      # Madrid, 30 orígenes
-    python scripts/train_predictivo.py --sede barcelona
-    python scripts/train_predictivo.py --sede todas --n-origenes 60
-    python scripts/train_predictivo.py --con-seasonal        # añade SARIMAX (P,D,Q,24)
-"""
 from __future__ import annotations
 
 import argparse

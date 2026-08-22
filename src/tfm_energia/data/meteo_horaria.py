@@ -1,19 +1,3 @@
-"""Conversión de la observación diaria de AEMET en una serie horaria.
-
-AEMET OpenData publica gratuitamente **valores diarios** (mínima, máxima, media,
-humedad), pero la simulación del edificio y los modelos trabajan a resolución
-horaria. Este módulo reconstruye el ciclo diario a partir de la mínima y la
-máxima mediante una curva sinusoidal con el mínimo al amanecer y el máximo a
-media tarde, que es la aproximación estándar en modelización energética de
-edificios cuando solo se dispone de extremos diarios.
-
-Esta serie es la que **gobierna la física del edificio**: se pasa al generador
-como temperatura exterior, de modo que la temperatura interior y el consumo de
-climatización derivan de la meteorología real. Antes se sustituía la columna
-*después* de haber simulado, lo que dejaba cada fila afirmando una temperatura
-exterior que no era la que había producido su propio consumo: un desajuste medio
-de 3,8 °C que invalidaba cualquier modelo térmico construido sobre el dataset.
-"""
 from __future__ import annotations
 
 import numpy as np

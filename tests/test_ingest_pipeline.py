@@ -1,9 +1,3 @@
-"""Tests del pipeline de ingesta.
-
-Se prueba sin base de datos: el repositorio se sustituye por un doble que
-registra lo que se le pide insertar. Lo que se valida aquí es el
-comportamiento del pipeline, no el de MongoDB.
-"""
 from __future__ import annotations
 
 import json

@@ -1,19 +1,3 @@
-"""Generador de datos sintéticos calibrados para oficinas IoT.
-
-Modela cuatro oficinas (Madrid, Sevilla, Barcelona, Oviedo) con dos años de
-histórico horario, incluyendo:
-
-    * Temperatura y humedad exteriores estacionales por climatología.
-    * Ocupación según horario laboral, día de la semana y festivos.
-    * Termodinámica simplificada del edificio (T interior).
-    * Demanda eléctrica: HVAC, iluminación, equipos y carga base.
-    * Sensores IoT internos (T, HR, CO2).
-    * Inyección controlada de anomalías para validar detectores.
-
-El modelo es paramétrico y se inspira en patrones reales de datasets públicos
-(ASHRAE Great Energy Predictor III, Building Data Genome Project) sin reusar
-datos directamente, lo que permite calibrar cada sede independientemente.
-"""
 from __future__ import annotations
 
 import zlib
@@ -78,11 +62,6 @@ CLIMA_PARAMS: dict[str, dict[str, float]] = {
 # Modelo de ocupación
 # ---------------------------------------------------------------------------
 def occupancy_factor(ts: pd.Timestamp, festivos: set[date]) -> float:
-    """Devuelve factor de ocupación en [0, 1] para un instante dado.
-
-    Refleja horario laboral 8-19h con pico ~10-13 y 15-18, fuera = 0,
-    fines de semana y festivos = 0 con cola residual de mantenimiento.
-    """
     if ts.date() in festivos or ts.weekday() >= 5:
         return 0.05  # personal de mantenimiento puntual
 
@@ -107,8 +86,6 @@ def occupancy_factor(ts: pd.Timestamp, festivos: set[date]) -> float:
 # ---------------------------------------------------------------------------
 @dataclass
 class SimulationConfig:
-    """Parámetros físicos y de negocio de la simulación."""
-
     # Setpoints de confort (°C)
     t_setpoint_invierno: float = 21.0
     t_setpoint_verano: float = 24.0
@@ -147,8 +124,6 @@ class SimulationConfig:
 # Simulador de una sede
 # ---------------------------------------------------------------------------
 class OfficeSimulator:
-    """Genera dos años de datos horarios para una sede."""
-
     def __init__(
         self,
         sede_id: str,

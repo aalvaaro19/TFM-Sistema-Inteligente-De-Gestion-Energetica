@@ -1,9 +1,3 @@
-"""Esquemas de entrada y salida de la API.
-
-Se definen con Pydantic para que FastAPI valide las peticiones, serialice las
-respuestas y genere la documentación OpenAPI automáticamente. Tener el contrato
-explícito evita que el dashboard y la API se desincronicen en silencio.
-"""
 from __future__ import annotations
 
 from datetime import datetime

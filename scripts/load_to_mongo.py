@@ -1,26 +1,3 @@
-"""OBSOLETO — carga directa de los datos simulados a MongoDB.
-
-**Sustituido por `scripts/ingest_stream.py`.** Se conserva porque documenta una
-etapa de la evolución del proyecto y sirve para explicar por qué la validación
-importa.
-
-Este script inserta los eventos **sin comprobar nada**: cualquier registro con un
-campo ausente, un valor fuera de rango físico o una fecha ilegible entra en la
-base de datos igual que uno correcto. Al construir la ingesta definitiva se
-comprobó que eso admitía 2.184 eventos defectuosos —el 1,04 % del total— que
-ahora se apartan a una rama de rechazo con su motivo, lo que permite auditar la
-calidad del dato en lugar de contaminar el almacén con él.
-
-La vía actual, además, es idempotente: reejecutarla no duplica datos, mientras que
-este script requiere `--reset` para no acumularlos.
-
-No usar salvo para reproducir el comportamiento anterior con fines comparativos.
-
-Uso (histórico):
-    python scripts/load_to_mongo.py                  # carga consolidado completo
-    python scripts/load_to_mongo.py --sede madrid    # solo una sede
-    python scripts/load_to_mongo.py --reset          # vacía la colección primero
-"""
 from __future__ import annotations
 
 import argparse

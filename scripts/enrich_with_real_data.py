@@ -1,20 +1,3 @@
-"""Añade los precios reales de e·sios al dataset simulado y calcula el coste.
-
-La meteorología de AEMET **ya no se incorpora aquí**: se inyecta directamente en
-el generador (ver `data/meteo_horaria.py`), de forma que la temperatura interior
-y el consumo de climatización se derivan de la observación real. Este script solo
-se ocupa de la parte económica.
-
-Pipeline:
-    1. Carga el dataset simulado (4 sedes, 2 años horarios), que ya lleva la
-       meteorología real aplicada en origen.
-    2. Carga precios PVPC horarios → merge sobre timestamp.
-    3. Calcula el coste por registro.
-    4. Guarda en `data/processed/enriquecido_{sede}.parquet` y un consolidado.
-
-Uso:
-    python scripts/enrich_with_real_data.py
-"""
 from __future__ import annotations
 
 import sys

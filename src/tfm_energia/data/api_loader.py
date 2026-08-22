@@ -1,18 +1,3 @@
-"""Preparación de los datos de las APIs externas para su carga en MongoDB.
-
-Los clientes de AEMET y e·sios dejan su resultado en CSV. Este módulo los
-convierte en documentos listos para persistir, resolviendo las dos rarezas del
-formato de AEMET:
-
-  * **Decimales con coma.** Las columnas de presión llegan como `"945,1"`
-    mientras que las de temperatura usan punto (`6.6`). Conviven ambos estilos
-    en el mismo fichero.
-  * **Marcadores de texto en columnas de hora.** `horaHrMax` puede valer
-    `"Varias"` cuando el máximo se alcanzó en más de un momento del día.
-
-Las funciones son puras y no tocan la base de datos, de modo que pueden
-probarse sin MongoDB.
-"""
 from __future__ import annotations
 
 from typing import Any

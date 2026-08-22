@@ -1,10 +1,3 @@
-"""Cliente para la API AEMET OpenData.
-
-Documentación: https://opendata.aemet.es/dist/index.html
-
-Para datos climatológicos diarios e históricos horarios por estación.
-Requiere `AEMET_API_KEY` en el entorno.
-"""
 from __future__ import annotations
 
 from datetime import date, datetime

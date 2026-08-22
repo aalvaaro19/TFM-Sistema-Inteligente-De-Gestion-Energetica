@@ -1,9 +1,3 @@
-"""Tests del modelo SARIMAX.
-
-Se usan series cortas y órdenes pequeños: aquí se valida el *contrato* del
-modelo (formas, exógenas, índices, no negatividad), no su precisión, que se
-mide en el backtesting del notebook 03.
-"""
 from __future__ import annotations
 
 import numpy as np

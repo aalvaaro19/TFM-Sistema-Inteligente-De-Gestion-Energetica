@@ -1,4 +1,3 @@
-"""Tests unitarios mínimos para el generador sintético."""
 from __future__ import annotations
 
 from datetime import date

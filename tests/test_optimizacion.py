@@ -1,9 +1,3 @@
-"""Tests del modelo térmico y del optimizador de costes.
-
-Lo crítico aquí es que el modelo térmico sea **fiel al edificio simulado**: si no
-lo fuera, el ahorro que calcule el optimizador sería ficción. Por eso el test
-central compara la predicción del modelo lineal con la trayectoria registrada.
-"""
 from __future__ import annotations
 
 from datetime import date

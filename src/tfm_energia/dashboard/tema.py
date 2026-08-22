@@ -1,21 +1,3 @@
-"""Paleta y estilo de los gráficos del cuadro de mando.
-
-La paleta no se elige por gusto: está **verificada** con el validador de
-accesibilidad del sistema de diseño. Resultados de esa comprobación:
-
-* Modo claro, 4 series en pares adyacentes (áreas apiladas, barras, líneas):
-  pasa todas las comprobaciones. Peor par en visión con deficiencia cromática
-  ΔE 9,1 (objetivo ≥ 8) y en visión normal ΔE 22,9 (mínimo ≥ 15).
-* Modo oscuro, los mismos cuatro tonos re-escalonados para el fondo oscuro:
-  pasa todo, contraste incluido.
-* Tres series con todos los pares comparados (dispersión): pasa todo.
-
-Un aviso que condiciona el diseño: en modo claro el aqua (2,74:1) y el amarillo
-(2,11:1) quedan por debajo de 3:1 sobre el fondo. La regla de compensación exige
-**etiquetas visibles o vista de tabla**, de modo que la identidad de la serie
-nunca dependa solo del color. Por eso cada gráfico del cuadro de mando lleva su
-tabla desplegable.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field

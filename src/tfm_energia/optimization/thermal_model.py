@@ -1,31 +1,3 @@
-"""Modelo térmico lineal del edificio, base física del optimizador.
-
-El optimizador no puede limitarse a mover kWh de una hora a otra: el consumo de
-climatización responde a mantener el edificio en confort, no es un caudal que se
-trasvase libremente. Lo que sí permite el desplazamiento de carga es usar la
-**masa del edificio como batería térmica**: calentar de más en horas baratas
-deja energía almacenada que reduce la necesidad en horas caras.
-
-Este módulo formaliza esa física en una ecuación de estado lineal:
-
-    T[h] = T[h-1] + k·(Text[h] − T[h-1]) + g·ocup[h] + s·rad[h] + η[h]·q[h]
-
-donde `q[h]` es la energía térmica aplicada (positiva calienta, negativa
-enfría). Al ser lineal en `T` y en `q`, el problema de optimización resultante es
-un programa lineal, con garantía de óptimo global.
-
-**Coherencia con el simulador.** Los parámetros se toman de `SimulationConfig`,
-el mismo objeto que gobierna la generación de los datos. Es imprescindible: si el
-modelo del optimizador y el del edificio simulado no coincidieran, el ahorro
-calculado no sería comparable con el consumo real y la cifra no valdría nada.
-
-**La linealización que hay que declarar.** El rendimiento `η` —grados que sube el
-edificio por kWh consumido— depende de la dificultad térmica, que a su vez
-depende de `|T_int − T_ext|`. Como `T_int` es variable de decisión, eso haría el
-problema no lineal. Se resuelve calculando `η` con la temperatura exterior
-prevista y la consigna de confort, no con la variable. Es la aproximación
-habitual en control predictivo y hay que documentarla como tal.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass

@@ -1,13 +1,3 @@
-"""Acceso a los resultados de las fases previas para servirlos por la API.
-
-La API no recalcula nada: lee los artefactos que dejan los scripts de cada fase
-—métricas de modelos, anomalías detectadas, comparativa de optimización— y los
-sirve. Separar el cálculo de la consulta mantiene la API rápida y hace que un
-fallo en el servicio no arrastre a los resultados ya obtenidos.
-
-Los artefactos se cargan **una sola vez y se memorizan**, porque son ficheros
-estáticos que solo cambian al reejecutar una fase.
-"""
 from __future__ import annotations
 
 from functools import lru_cache

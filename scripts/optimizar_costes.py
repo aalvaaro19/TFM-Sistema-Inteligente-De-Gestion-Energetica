@@ -1,29 +1,3 @@
-"""Optimización del coste de climatización y comparación de estrategias (fase 7).
-
-Compara tres formas de gobernar la climatización sobre los mismos datos, la misma
-física y la misma banda de confort:
-
-    1. **reactivo_actual** – el control que ya está en los datos: mira la hora
-       presente y corrige. Es el punto de partida.
-    2. **predictivo_ciego** – control predictivo con tarifa plana. Ve 48 h hacia
-       delante y respeta el confort, pero no ve la señal de precio, así que
-       minimiza energía. Es la referencia limpia.
-    3. **predictivo_precio** – control predictivo con los precios PVPC reales.
-
-La comparación 3 frente a 2 aísla **el valor de ver el precio**, sin contaminación
-de otras diferencias. La comparación 2 frente a 1 mide lo que aporta anticipar,
-tanto en coste como en confort.
-
-Salidas en `data/processed/`:
-    * ``optimizacion_resumen.csv``     – tabla por sede y estrategia
-    * ``optimizacion_horaria.parquet`` – series horarias, para el dashboard
-    * ``optimizacion_sensibilidad.csv`` – ahorro según envolvente y margen
-
-Uso:
-    python scripts/optimizar_costes.py
-    python scripts/optimizar_costes.py --sede madrid --ventanas 60
-    python scripts/optimizar_costes.py --sensibilidad
-"""
 from __future__ import annotations
 
 import argparse

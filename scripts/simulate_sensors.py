@@ -1,23 +1,3 @@
-"""Simula los gateways IoT de las sedes emitiendo lecturas en JSON Lines.
-
-Convierte el histórico de `data/synthetic/` en ficheros de eventos que el
-pipeline de ingesta (StreamSets o su equivalente Python) puede consumir. Es la
-pieza que convierte un dataset estático en un flujo.
-
-Salida: `data/stream/sede={sede}/lecturas_{clave}.jsonl`
-
-Uso:
-    # Vuelca todo el histórico particionado por mes (carga inicial)
-    python scripts/simulate_sensors.py --modo lote --particion mes
-
-    # Solo Madrid, un rango concreto, particionado por día
-    python scripts/simulate_sensors.py --modo lote --sede madrid \
-        --desde 2025-12-01 --hasta 2025-12-31 --particion dia
-
-    # Emisión en vivo para la demo: un fichero por hora simulada cada 2 s
-    python scripts/simulate_sensors.py --modo stream --sede madrid \
-        --intervalo 2 --max-lotes 30
-"""
 from __future__ import annotations
 
 import argparse

@@ -1,17 +1,3 @@
-"""Detección de anomalías de consumo y evaluación contra las etiquetas reales.
-
-Entrena un Isolation Forest por sede de forma **no supervisada** —sin usar las
-etiquetas— y después lo evalúa contra ellas. Se compara con un baseline
-estadístico para comprobar que la complejidad añadida se justifica.
-
-Salidas en `data/processed/`:
-    * ``anomalias_metricas.csv``    – comparativa de detectores por sede
-    * ``anomalias_detectadas.csv``  – detalle de cada detección, para el dashboard
-
-Uso:
-    python scripts/detectar_anomalias.py
-    python scripts/detectar_anomalias.py --sede madrid --contaminacion 0.03
-"""
 from __future__ import annotations
 
 import argparse

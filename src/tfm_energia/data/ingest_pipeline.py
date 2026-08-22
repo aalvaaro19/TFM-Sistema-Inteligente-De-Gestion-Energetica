@@ -1,32 +1,3 @@
-"""Pipeline de ingesta de eventos IoT: del fichero JSON Lines a MongoDB.
-
-Implementa en Python las mismas etapas que el pipeline de StreamSets Data
-Collector, de modo que ambos son intercambiables y el sistema puede
-demostrarse aunque SDC no esté disponible:
-
-    Directory ──► Expression Evaluator ──► Stream Selector ──┬──► Field Type
-    (leer_jsonl)   (enriquecer)             (es_valido)      │    Converter
-                                                             │  (normalizar_fechas)
-                                                             │        │
-                                                             │        ▼
-                                                             │   MongoDB
-                                                             │  (sensores_iot)
-                                                             └──► Local FS
-                                                                (rechazados)
-
-Decisiones de diseño:
-
-  * **Validar antes de convertir.** Convertir tipos sobre un dato corrupto
-    obliga a proteger cada conversión con excepciones; validando primero solo
-    se transforma lo que ya se sabe sano. Además, los eventos rechazados se
-    conservan tal como llegaron, que es lo que hace falta para auditar la
-    avería de un sensor.
-  * **Idempotencia mediante control de offsets.** Igual que SDC recuerda por
-    dónde iba en cada fichero, aquí se registra qué ficheros se procesaron y
-    con qué tamaño y fecha. Reejecutar la ingesta no duplica datos.
-  * **Ningún evento se pierde.** Lo que no es válido va a la rama de rechazo
-    con su motivo, nunca al vacío.
-"""
 from __future__ import annotations
 
 import json

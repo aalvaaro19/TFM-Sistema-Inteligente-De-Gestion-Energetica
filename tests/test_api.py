@@ -1,11 +1,4 @@
-"""Tests de la API REST.
 
-Se usan los artefactos reales del proyecto: la API no recalcula nada, así que
-probarla contra ficheros inventados no verificaría el contrato que de verdad
-consume el dashboard. Los tests que dependen de un artefacto concreto se omiten
-si esa fase todavía no se ha ejecutado, para que la suite siga siendo útil en un
-repositorio recién clonado.
-"""
 from __future__ import annotations
 
 import pytest

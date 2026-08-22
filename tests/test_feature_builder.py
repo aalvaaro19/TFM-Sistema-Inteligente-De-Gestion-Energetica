@@ -1,4 +1,3 @@
-"""Tests del feature builder."""
 from __future__ import annotations
 
 from datetime import date

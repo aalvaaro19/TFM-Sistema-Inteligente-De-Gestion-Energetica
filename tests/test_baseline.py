@@ -1,4 +1,3 @@
-"""Tests de los modelos baseline y del backtesting con origen móvil."""
 from __future__ import annotations
 
 import numpy as np

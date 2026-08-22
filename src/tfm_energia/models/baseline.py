@@ -1,19 +1,3 @@
-"""Modelos baseline (referencia mínima) para la predicción de consumo.
-
-Ningún modelo avanzado del TFM puede considerarse útil si no bate claramente a
-estas referencias. Son deliberadamente simples y *no entrenan parámetros*:
-
-  * :class:`NaivePersistente` – repite el último valor observado (lag-1).
-  * :class:`NaiveEstacional` – repite el mismo perfil del día anterior (lag-24).
-  * :class:`NaiveEstacionalSemanal` – repite la misma hora de la semana anterior
-    (lag-168). Suele ser el baseline duro en consumo de oficinas, porque captura
-    la diferencia laborable / fin de semana.
-  * :class:`MediaPerfilSemanal` – media histórica por (día de la semana, hora).
-  * :class:`MediaMovil` – media de las últimas `ventana` horas.
-
-Todos siguen la interfaz :class:`~tfm_energia.models.base.BaseForecaster`, de
-modo que se evalúan con el mismo backtesting que SARIMAX, Prophet y LSTM.
-"""
 from __future__ import annotations
 
 import numpy as np

@@ -1,28 +1,3 @@
-"""Ejecuta el proyecto de punta a punta, o la parte que se le pida.
-
-Declara las dependencias entre etapas y las respeta, de forma que reproducir el
-proyecto desde cero no dependa de recordar el orden correcto.
-
-Uso:
-    # Ver qué etapas están hechas y qué falta, sin ejecutar nada
-    python scripts/ejecutar_pipeline.py --estado
-
-    # Ver el plan de ejecución sin lanzarlo
-    python scripts/ejecutar_pipeline.py --simular
-
-    # Todo desde cero (requiere tokens de AEMET y e·sios, y MongoDB)
-    python scripts/ejecutar_pipeline.py
-
-    # Solo lo que falte, sin repetir lo ya calculado
-    python scripts/ejecutar_pipeline.py --reanudar
-
-    # Desde una etapa concreta en adelante
-    python scripts/ejecutar_pipeline.py --desde enriquecer
-
-    # Etapas concretas, u omitiendo las que necesitan MongoDB
-    python scripts/ejecutar_pipeline.py --solo entrenar anomalias
-    python scripts/ejecutar_pipeline.py --sin-mongo
-"""
 from __future__ import annotations
 
 import argparse

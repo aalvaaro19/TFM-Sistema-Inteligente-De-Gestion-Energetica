@@ -1,16 +1,3 @@
-"""Interfaz común a todos los modelos de predicción del TFM.
-
-Definir un contrato único (`fit` / `predict`) permite que baselines, SARIMAX,
-Prophet y LSTM se evalúen con el mismo código de backtesting y las mismas
-métricas, que es justo lo que hace comparable el estudio.
-
-Convenios:
-
-  * La serie objetivo `y` es un ``pd.Series`` con ``DatetimeIndex`` horario.
-  * ``predict(steps)`` devuelve una predicción **puramente fuera de muestra**:
-    los `steps` timestamps siguientes al final del entrenamiento.
-  * Las exógenas `X` son opcionales; los modelos que no las usan las ignoran.
-"""
 from __future__ import annotations
 
 from abc import ABC, abstractmethod

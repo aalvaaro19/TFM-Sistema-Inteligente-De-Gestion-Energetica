@@ -1,24 +1,3 @@
-"""Emisión de lecturas de sensores en formato de flujo (JSON Lines).
-
-Los parquet del generador son un *dataset*, no un *flujo*. Un pipeline de
-ingesta necesita lo segundo: ficheros de eventos que van apareciendo, tal como
-los dejaría el gateway IoT de cada sede. Este módulo cubre ese hueco.
-
-Formato elegido: **JSON Lines** (un objeto JSON por línea, sin array
-envolvente). Es el estándar de los flujos de eventos porque permite escritura
-en modo *append*, procesado línea a línea sin cargar el fichero completo y
-lectura nativa desde el origen `Directory` de StreamSets.
-
-Cada evento lleva además los metadatos que añadiría un gateway real:
-
-  * ``gateway_id`` – qué equipo lo emitió.
-  * ``ingest_ts`` – cuándo se emitió, que **no** es el instante de la lectura.
-    La diferencia entre ambos es la latencia de la telemetría.
-
-El emisor puede corromper una fracción de los eventos imitando fallos reales de
-sensores. Sin datos defectuosos, la rama de rechazo del pipeline nunca se
-ejercita y no hay forma de demostrar que la validación funciona.
-"""
 from __future__ import annotations
 
 import json

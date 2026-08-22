@@ -1,9 +1,3 @@
-"""Tests de la detección de anomalías.
-
-Se prueban por separado las tres piezas: la referencia local (que es lo que
-hace al detector inmune a la estacionalidad), los detectores especializados, y
-las métricas de evaluación.
-"""
 from __future__ import annotations
 
 from datetime import date

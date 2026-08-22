@@ -1,18 +1,3 @@
-"""Cuadro de mando del sistema de gestión energética.
-
-Traduce los resultados de las fases previas en información útil para quien
-gestiona las instalaciones: cuánto se consume, cuánto se prevé consumir, qué
-comportamientos anómalos hay y cuánto se puede ahorrar.
-
-Arranque:
-    streamlit run src/tfm_energia/dashboard/app.py
-
-Lee los artefactos de `data/processed/` a través del mismo repositorio que usa la
-API. Se accede en local en lugar de por HTTP para que el despliegue en Streamlit
-Cloud no necesite mantener un segundo servicio en pie; la API queda como interfaz
-de integración para terceros y comparte exactamente la misma capa de acceso, así
-que ambas sirven cifras idénticas.
-"""
 from __future__ import annotations
 
 import numpy as np

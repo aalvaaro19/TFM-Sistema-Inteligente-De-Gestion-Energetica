@@ -1,21 +1,3 @@
-"""Métricas de evaluación para los modelos de predicción de consumo.
-
-Se centraliza aquí el cálculo de errores para que **todos** los modelos del TFM
-(baselines, SARIMAX, Prophet, LSTM) se comparen exactamente con el mismo criterio.
-
-Métricas implementadas:
-
-  * **MAE**   – error absoluto medio (kWh). Interpretable en unidades del target.
-  * **RMSE**  – penaliza más los errores grandes (picos de consumo).
-  * **MAPE**  – error porcentual medio. Inestable si hay valores próximos a 0.
-  * **sMAPE** – variante simétrica del MAPE, acotada en [0, 200] %.
-  * **R2**    – proporción de varianza explicada.
-  * **MBE**   – sesgo medio: >0 el modelo sobreestima, <0 infraestima.
-
-Nota metodológica: en este dataset el consumo nunca baja de la carga base
-(~5 kWh), por lo que el MAPE es estable. Aun así se calcula con una máscara de
-seguridad para evitar divisiones por cero si se reutiliza en otras series.
-"""
 from __future__ import annotations
 
 import numpy as np

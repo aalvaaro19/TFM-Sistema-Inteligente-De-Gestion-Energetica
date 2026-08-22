@@ -1,25 +1,3 @@
-"""Detección de anomalías de consumo mediante aprendizaje no supervisado.
-
-El sistema debe localizar automáticamente comportamientos anómalos —equipos que
-se quedan encendidos, fugas de consumo, sensores averiados— **sin que nadie le
-diga cuáles son**. Por eso se emplea un enfoque no supervisado: el detector se
-entrena solo con los datos, y las etiquetas del dataset se reservan
-exclusivamente para evaluarlo.
-
-Tipología de anomalías presente en los datos:
-
-  * ``CONSUMPTION_SPIKE`` – el consumo total se dispara (×2,2).
-  * ``EQUIPMENT_LEAK``    – los equipos consumen de más (+6 kWh constantes).
-  * ``HVAC_STUCK_ON``     – la climatización se queda enganchada (×3,5).
-  * ``SENSOR_FROZEN``     – el sensor de temperatura interior deja de actualizarse.
-
-Los tres primeros alteran el consumo y son detectables mirando valores. El
-cuarto **no toca el consumo en absoluto**: congela la temperatura en un valor
-que suele ser perfectamente normal. Su única huella es que la señal deja de
-variar, así que hace falta una variable que mida esa variación. Es la razón de
-que el conjunto de features incluya desviaciones típicas móviles: sin ellas,
-una de las cuatro clases sería invisible por construcción.
-"""
 from __future__ import annotations
 
 from abc import ABC, abstractmethod

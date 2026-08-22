@@ -1,14 +1,3 @@
-"""Construcción de variables (feature engineering) para los modelos predictivos.
-
-Convierte el dataset crudo en un conjunto de features rico que cubre:
-
-  * Variables calendario (hora, día, mes, festivo) con codificación cíclica.
-  * Lags del target (1h, 24h, 168h) para capturar memoria temporal.
-  * Estadísticas móviles (rolling mean / std) en distintas ventanas.
-  * Variables exógenas climáticas y de ocupación.
-  * Variables económicas (precio PVPC) cuando estén disponibles.
-  * Particionado train / validation / test respetando el orden temporal.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
