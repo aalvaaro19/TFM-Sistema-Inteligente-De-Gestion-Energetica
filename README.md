@@ -77,7 +77,7 @@ El modelo elegido usa un **enfoque directo multi-paso**: un único regresor vál
 
 Detector **no supervisado** de cuatro canales especializados, cada uno vigilando la señal donde su avería deja huella. Las etiquetas del dataset se reservan exclusivamente para evaluar.
 
-La combinación es necesaria: Isolation Forest rinde mal cuando la anomalía es extrema en una sola dimensión, como un sensor bloqueado cuyo valor es normal pero deja de variar.
+La combinación es necesaria: Isolation Forest rinde mal cuando la anomalía es extrema en una sola dimensión, como un sensor congelado cuyo valor es normal pero deja de variar.
 
 ### 💰 Optimización energética
 
@@ -100,20 +100,24 @@ La referencia de comparación es **el mismo optimizador con tarifa plana**: mism
 
 ### Detección de anomalías
 
-F1 de **0,579** con un presupuesto de aviso del 2 % de las horas, **AUC 0,935** y el **80 % de los episodios** detectados. Por tipo de avería: fuga de equipos 0,97 · climatización atascada 0,95 · sensor bloqueado 0,73 · pico de consumo 0,09.
+F1 de **0,579** con un presupuesto de aviso del 2 % de las horas, **AUC 0,931** y el **80 % de los episodios** detectados. El **recall por tipo de avería** enseña dónde funciona y dónde no: fuga de equipos 0,97 · climatización bloqueada 0,95 · sensor congelado 0,73 · pico de consumo 0,09.
+
+El pico de consumo se queda en 0,09 porque multiplica un consumo que de madrugada es de 6 kWh y el incremento cae dentro del ruido normal de la serie. Es una limitación de relación señal/ruido de la propia avería, no del algoritmo.
 
 ### Optimización de costes
 
-El arbitraje de precios funciona: el control consciente del precio paga un **7,9 % menos por kWh**. Pero desplazar carga obliga a almacenar calor, y con la envolvente de estas oficinas las pérdidas cancelan la ventaja, dejando el **ahorro en torno al 0 %**.
+El arbitraje de precios funciona: el control consciente del precio paga un **13,8 % menos por kWh**, de 0,138 a 0,119 €/kWh. Pero desplazar carga obliga a almacenar calor, y con la envolvente de estas oficinas las pérdidas se comen la ventaja: el ahorro neto se queda en **+0,37 %, 181 € al año** sobre un coste de climatización de 48.959 €.
 
-El análisis de sensibilidad explica el resultado y lo convierte en una recomendación accionable:
+El análisis de sensibilidad explica el resultado y lo convierte en una recomendación accionable. El margen es el adelanto que se le permite al preacondicionamiento:
 
-| Constante de tiempo del edificio | Ahorro |
-|---|---|
-| 8 h (envolvente actual) | −0,3 % |
-| 12 h | +1,8 % |
-| 20 h | +1,9 % |
-| **33 h (bien aislado)** | **+9,5 %** |
+| Constante de tiempo del edificio | Ahorro (margen 0) | Ahorro (margen 3 °C) |
+|---|---|---|
+| 8 h (envolvente actual) | +0,28 % | −0,32 % |
+| 12 h | +2,75 % | +1,82 % |
+| 20 h | +3,07 % | +1,88 % |
+| **33 h (bien aislado)** | **+5,68 %** | **+9,54 %** |
+
+Nótese el cambio de signo de la última columna: con envolvente mala, dejar precalentar más **empeora** el resultado, porque se almacena antes lo que va a perderse igual; con envolvente buena, lo mejora. Una misma estrategia de control da resultados opuestos según el edificio sobre el que se aplique.
 
 **El desplazamiento de carga solo resulta rentable si la envolvente conserva el calor almacenado**: conviene aislar antes de automatizar. El objetivo inicial del 15 % no es alcanzable por esta vía, ya que el techo teórico del arbitraje es del 7,5 % dado que la climatización representa entre el 22 y el 32 % de la factura.
 
@@ -126,10 +130,11 @@ Además, el control predictivo **elimina por completo los 15.443 °C·h de incum
 ```text
 .
 ├── data/
-│   ├── raw/           Descargas de AEMET y e·sios
-│   ├── synthetic/     Simulación de las sedes
-│   ├── stream/        Flujo de eventos IoT (JSON Lines)
-│   └── processed/     Dataset enriquecido y resultados de cada fase
+│   ├── raw/                 Descargas de AEMET y e·sios
+│   ├── synthetic/           Simulación de las sedes
+│   ├── stream/              Flujo de eventos IoT (JSON Lines)
+│   ├── stream_rechazados/   Eventos que no pasan la validación, con su motivo
+│   └── processed/           Dataset enriquecido y resultados de cada fase
 │
 ├── src/tfm_energia/
 │   ├── data/          Clientes de API, simulador, ingesta, repositorio Mongo
@@ -138,13 +143,17 @@ Además, el control predictivo **elimina por completo los 15.443 °C·h de incum
 │   ├── optimization/  Modelo térmico y optimizador lineal
 │   ├── api/           API REST
 │   ├── dashboard/     Cuadro de mando
+│   ├── config.py      Configuración y parámetros de las sedes
 │   └── pipeline.py    Grafo de etapas y dependencias
 │
 ├── scripts/           Ejecutables de cada etapa + orquestador y verificador
 ├── streamsets/        Diseño del pipeline de ingesta y su imagen Docker
 ├── notebooks/         Exploración y prototipado
-├── docs/              Documentación y borradores de la memoria
-└── tests/             Suite de pruebas (274)
+├── tests/             Suite de pruebas (274)
+│
+├── docker-compose.yml MongoDB, Mongo Express y StreamSets
+├── pyproject.toml     Dependencias y configuración de las herramientas
+└── SETUP.md           Guía detallada de puesta en marcha
 ```
 
 ---
